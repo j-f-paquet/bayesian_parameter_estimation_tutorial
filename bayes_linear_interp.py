@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as mpl
-mpl.use('Agg')
+#mpl.use('Agg')
 import matplotlib.pyplot as plt
 #from matplotlib import colors, ticker, cm
 #import scipy.interpolate
@@ -19,12 +19,18 @@ import re
 ################
 
 #data_pT, data_mean, data_err = np.loadtxt("RAA_AuAu200_jet_R0.4_cut2_coef1.txt").T
-data_pT, data_mean, data_err = np.loadtxt("data/data.txt").T
+data_jet04_pT, data_jet04_mean, data_jet04_err = np.loadtxt("data/RAA_AuAu200_jet_R0.4_cut2_coef0.8.txt").T
+data_charged_hadron_pT, data_charged_hadron_mean, data_charged_hadron_err = np.loadtxt("data/RAA_AuAu200_charged_hadron_cut2_coef0.8.txt").T
 data_dict={
+    'charged_hadron':{
+        'pT':data_charged_hadron_pT,
+        'mean':data_charged_hadron_mean,
+        'err':data_charged_hadron_err
+    },
     'jet_R0.4':{
-        'pT':data_pT,
-        'mean':data_mean,
-        'err':data_err
+        'pT':data_jet04_pT,
+        'mean':data_jet04_mean,
+        'err':data_jet04_err
     }
 }
 
@@ -139,7 +145,7 @@ def posterior(kappa):
         data_err_list=data_dict[obs]['err']
 
         # Sum over p_T
-        for n, pT in enumerate(data_pT):
+        for n, pT in enumerate(data_pT_list):
             tmp_model_mean=model_mean_interp(kappa, pT)
             tmp_model_err=model_err_interp(kappa, pT)
             #print(kappa, pT, tmp_model_mean, tmp_model_err)
@@ -174,10 +180,12 @@ plt.yscale('linear')
 plt.xlabel(r'$\kappa$')
 plt.ylabel(r'Posterior')
 
-kappa_range=np.arange(0.5, 2.0, 0.01)
+kappa_range=np.arange(0.0, 2.0, 0.01)
 posterior = [ posterior(kappa) for kappa in kappa_range ]
 
 plt.plot(kappa_range, posterior, "-", color='black', lw=4)
+
+plt.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
 
 #plt.legend(loc='upper right',fontsize=16)
 plt.tight_layout()
