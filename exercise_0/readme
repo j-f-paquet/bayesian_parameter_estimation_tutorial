@@ -1,0 +1,4 @@
+- Closure test (meaning that a model is used to generate the "data" for the Bayesian parameter estimation)
+- Single observable
+- Single parameter
+- Simple "emulator": linear interpolator
