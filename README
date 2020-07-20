@@ -1,0 +1,9 @@
+This repository contains introductory examples to Bayesian parameter estimations.
+
+The examples take the form of Jupyter notebooks, in the "example_*" directories.
+
+The Jupyter notebooks can be run locally. Simply copy this git repository to your workstation and
+run "jupyter-notebook".
+
+They can also be run on Binder through this link:
+https://mybinder.org/v2/gh/j-f-paquet/bayesian_parameter_estimation_tutorial/master
