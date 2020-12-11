@@ -1,0 +1,6 @@
+- Example with "soft sector of heavy ion collision"
+- Closure test (meaning that a model is used to generate the "data" for the Bayesian parameter estimation)
+- Two observables
+- Two parameters
+- Gaussian process emulator
+- Code written to be more easily generalised in higher dimensions
